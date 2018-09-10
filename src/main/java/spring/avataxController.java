@@ -20,8 +20,7 @@ public class avataxController {
 
     public String username = "tylerthewonderfull@gmail.com";
     public String password = "3E2B46DA6E";
-    @GetMapping("/auth/{username}/{password}")
-    @RequestMapping("/auth/{username}/{password}")
+    @GetMapping("/auth")
     public String auth(HttpServletRequest request, Model model, String user, String pass){
         AvaTaxClient client = new AvaTaxClient("Test", "1.0", "localhost", AvaTaxEnvironment.Production).withSecurity(username, password);
         try{
