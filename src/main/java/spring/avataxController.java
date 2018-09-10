@@ -12,10 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Past;
 import java.math.BigDecimal;
 
 @Controller
-@ResponseBody()
+@RequestMapping("/auth")
 public class avataxController {
 
     public String username = "tylerthewonderfull@gmail.com";
