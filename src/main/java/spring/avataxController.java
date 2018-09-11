@@ -19,10 +19,6 @@ import java.math.BigDecimal;
 @SessionAttributes({"username","password"})
 public class avataxController {
 
-
-
-    public String username = "tylerthewonderfull@gmail.com";
-    public String password = "3E2B46DA6E";
     @GetMapping("/auth")
     public String auth(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password){
         HttpSession session = request.getSession();
