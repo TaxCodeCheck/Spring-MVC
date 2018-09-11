@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 @SessionAttributes({"username","password"})
 public class avataxController {
 
-    @PostMapping("/auth")
+    @GetMapping("/auth")
     public String auth(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password){
         HttpSession sesh = request.getSession();
         AvaTaxClient client = new AvaTaxClient("Test", "1.0", "localhost", AvaTaxEnvironment.Production).withSecurity(username, password);
