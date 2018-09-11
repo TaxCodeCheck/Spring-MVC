@@ -19,16 +19,14 @@ import java.math.BigDecimal;
 @SessionAttributes({"username","password"})
 public class avataxController {
 
-    @GetMapping("/auth")
+    @PostMapping("/auth")
     public String auth(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password){
         HttpSession sesh = request.getSession();
         AvaTaxClient client = new AvaTaxClient("Test", "1.0", "localhost", AvaTaxEnvironment.Production).withSecurity(username, password);
         try{
             PingResultModel ping = client.ping();
             if(ping.getAuthenticated()){
-                model.addAttribute("username",username);
-                model.addAttribute("password",password);
-                model.addAttribute("isLoggedIn",true);
+                sesh.setAttribute("isLoggedIn",true);
                 sesh.setAttribute("username",username);
                 sesh.setAttribute("password",password);
                 System.out.println("Authentication recieved!");
