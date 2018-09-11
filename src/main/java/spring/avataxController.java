@@ -21,6 +21,8 @@ import java.math.BigDecimal;
 @ResponseBody()
 public class avataxController {
 
+
+
     public String username = "tylerthewonderfull@gmail.com";
     public String password = "3E2B46DA6E";
     @GetMapping("/auth")
