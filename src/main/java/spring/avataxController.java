@@ -21,18 +21,18 @@ public class avataxController {
 
     @GetMapping("/auth")
     public String auth(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password){
-        HttpSession session = request.getSession();
+        HttpSession sesh = request.getSession();
         AvaTaxClient client = new AvaTaxClient("Test", "1.0", "localhost", AvaTaxEnvironment.Production).withSecurity(username, password);
         try{
             PingResultModel ping = client.ping();
             if(ping.getAuthenticated()){
-                System.out.println("Authentication recieved!");
                 model.addAttribute("username",username);
                 model.addAttribute("password",password);
                 model.addAttribute("isLoggedIn",true);
-                session.setAttribute("username",username);
-                session.setAttribute("password",password);
+                sesh.setAttribute("username",username);
+                sesh.setAttribute("password",password);
                 System.out.println("Authentication recieved!");
+                return "good";
             }else{
                 System.out.println("Authentication rejected");
                 return "auth failed";
