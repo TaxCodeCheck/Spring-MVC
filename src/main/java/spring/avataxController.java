@@ -40,7 +40,7 @@ public class avataxController {
             System.out.println(e);
         }
         return client.toString();
-        }
     }
+}
 
 
