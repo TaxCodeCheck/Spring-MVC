@@ -21,7 +21,7 @@ public class avataxController {
 
     @GetMapping("/auth")
     @ResponseBody
-    public String auth(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password){
+    public Boolean auth(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password){
         HttpSession sesh = request.getSession();
         AvaTaxClient client = new AvaTaxClient("Test", "1.0", "localhost", AvaTaxEnvironment.Production).withSecurity(username, password);
         try{
@@ -31,16 +31,15 @@ public class avataxController {
                 sesh.setAttribute("username",username);
                 sesh.setAttribute("password",password);
                 System.out.println("Authentication recieved!");
-                return "good";
             }else{
                 System.out.println("Authentication rejected");
-                return "auth failed";
+                return false;
             }
         }catch(Exception e){
             System.out.println("inauthenticated");
             System.out.println(e);
         }
-        return "Auth accepted";
+        return true;
         }
     }
 
