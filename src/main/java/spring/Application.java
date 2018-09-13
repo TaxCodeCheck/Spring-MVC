@@ -30,9 +30,6 @@ public class Application {
             return this.message;
         }
 
-
-
-
     }
 }
 
