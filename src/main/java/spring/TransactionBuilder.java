@@ -32,12 +32,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@SessionAttributes({"taxcode","zip"})
+@SessionAttributes({"taxcode","zip","username","password"})
 public class TransactionBuilder {
     @GetMapping("/transaction")
     @ResponseBody
     public String transactionBuilder(HttpServletRequest post, @RequestParam String taxcode,
-                                     @RequestParam String zip) {
+                                     @RequestParam String zip, @RequestParam String username, @RequestParam String password) {
         String rate = null;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -68,14 +68,14 @@ public class TransactionBuilder {
         CTModel.setLines(lines);
         Gson gson = new Gson();
         try {
-            String userNamePass = Base64.getEncoder().encodeToString(("suzanne@favoredfortune.com:CodeFellows2018").getBytes());
+            String userPass = Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
             String requestUrl = "https://rest.avatax.com/api/v2/transactions/create";
             StringEntity requestEntity = new StringEntity(gson.toJson(CTModel), ContentType.APPLICATION_JSON);
 
             CloseableHttpClient client = HttpClients.createDefault();
             HttpPost httpPost = new HttpPost(requestUrl);
             httpPost.addHeader("accept", "application/json");
-            httpPost.addHeader("authorization", "Basic " + userNamePass);
+            httpPost.addHeader("authorization", "Basic " + userPass);
             httpPost.setEntity(requestEntity);
 
             HttpResponse response = client.execute(httpPost);
@@ -83,11 +83,11 @@ public class TransactionBuilder {
             if (response.getStatusLine().getStatusCode() != 200 && (response.getStatusLine().getStatusCode() != 201)) {
                 throw new RuntimeException("Error : " + response.getStatusLine().getStatusCode());
             }
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((response.getEntity()
+            BufferedReader reader = new BufferedReader(new InputStreamReader((response.getEntity()
                     .getContent())));
 
             String scan;
-            while ((scan = bufferedReader.readLine()) != null) {
+            while ((scan = reader.readLine()) != null) {
                 rate = scan;
             }
             //parses out the tax rate and sums the tax's then
