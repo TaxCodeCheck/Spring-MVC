@@ -17,7 +17,6 @@ import java.util.Date;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
@@ -30,7 +29,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-
 
 @Controller
 @SessionAttributes({"taxcode","zip"})
@@ -91,6 +89,7 @@ public class TransactionBuilder {
             while ((scan = bufferedReader.readLine()) != null) {
                 rate = scan;
             }
+            //parses out the tax rate
             double rateDouble = JSONParser.parseTaxRate(rate);
             System.out.println(rate);
             rate = Double.toString(rateDouble);
