@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -89,10 +90,13 @@ public class TransactionBuilder {
             while ((scan = bufferedReader.readLine()) != null) {
                 rate = scan;
             }
-            //parses out the tax rate
+            //parses out the tax rate and sums the tax's then
+            // converts to string after formatting it to 3 decimals places.
+            DecimalFormat d3 = new DecimalFormat("#.000");
             double rateDouble = JSONParser.parseTaxRate(rate);
+            rateDouble *= 100;
+            rate = d3.format(rateDouble);
             System.out.println(rate);
-            rate = Double.toString(rateDouble);
             return rate;
         } catch (ClientProtocolException e) {
 
