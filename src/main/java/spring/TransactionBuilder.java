@@ -96,6 +96,7 @@ public class TransactionBuilder {
             double rateDouble = JSONParser.parseTaxRate(rate);
             rateDouble *= 100;
             rate = d3.format(rateDouble);
+            rate = rate + "%";
             System.out.println(rate);
             return rate;
         } catch (ClientProtocolException e) {
