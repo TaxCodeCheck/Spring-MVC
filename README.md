@@ -7,6 +7,7 @@ This Android application is a sales tool meant to help AvaTax consultants quickl
 - IntelliJ Ultimate
 - Springboot MVC
 - GSON parser library
+- Apache libraries
 - [AvaTax API](https://developer.avalara.com/avatax/)
 
 #Resources
@@ -18,6 +19,8 @@ Avalara Style Guide [Avalara Style Guide](http://styleguide.avalara.com/)
 [Springboot Reference Guide](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 
 [Spring guides](https://spring.io/guides)
+
+[Apache guide](https://hc.apache.org/httpcomponents-client-ga/quickstart.html)
 
 
 #Credits

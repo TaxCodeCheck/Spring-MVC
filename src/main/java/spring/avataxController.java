@@ -1,12 +1,9 @@
 package spring;
 
 import net.avalara.avatax.rest.client.AvaTaxClient;
-import net.avalara.avatax.rest.client.TransactionBuilder;
 import net.avalara.avatax.rest.client.enums.AvaTaxEnvironment;
-import net.avalara.avatax.rest.client.enums.DocumentType;
-import net.avalara.avatax.rest.client.enums.TransactionAddressType;
 import net.avalara.avatax.rest.client.models.PingResultModel;
-import net.avalara.avatax.rest.client.models.TransactionModel;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,21 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.Arrays;
-import java.util.Base64;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 
 @Controller
 @SessionAttributes({"username","password"})
@@ -54,7 +38,6 @@ public class avataxController {
             System.out.println("inauthenticated");
             System.out.println(e);
         }
-
 
         return true;
     }

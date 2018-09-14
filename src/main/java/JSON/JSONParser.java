@@ -2,6 +2,7 @@ package JSON;
 
 import static java.lang.Double.parseDouble;
 
+//parses JSON data back from the AvaTax API
 public class JSONParser {
     public static double parseTaxRate (String string){
         double rate = 0;
