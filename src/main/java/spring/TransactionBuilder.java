@@ -25,22 +25,27 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
+@SessionAttributes({"taxcode","zip"})
 public class TransactionBuilder {
     @GetMapping("/transaction")
     @ResponseBody
-    public String transactionBuilder() {
+    public String transactionBuilder(HttpServletRequest post, @RequestParam String taxcode,
+                                     @RequestParam String zip) {
         String rate = null;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
         Date date = new Date();
         CreateTransactionModel CTModel = new CreateTransactionModel();
         LineItemModel line = new LineItemModel();
-        line.setTaxCode("PH404218");
+        line.setTaxCode(taxcode);
         line.setDescription("doesn't matter");
         BigDecimal decimal = BigDecimal.valueOf(100);
         line.setAmount(decimal);
@@ -50,7 +55,7 @@ public class TransactionBuilder {
 
         AddressesModel addModel = new AddressesModel();
         AddressLocationInfo addInfo = new AddressLocationInfo();
-        addInfo.setPostalCode("10001");
+        addInfo.setPostalCode(zip);
 
         addModel.setSingleLocation(addInfo);
 
