@@ -14,14 +14,13 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-        
     }
-
 
     @RefreshScope
     @RestController
     class MessageRestController {
 
+        //proof of life
         @Value("${message:Hello default}")
         private String message;
 
@@ -29,10 +28,6 @@ public class Application {
         String getMessage() {
             return this.message;
         }
-
-
-
-
     }
 }
 
