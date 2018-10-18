@@ -1,7 +1,7 @@
-#Application - AvaTax Quick Tax Check
+# Application - AvaTax Quick Tax Check
 This Android application is a sales tool meant to help AvaTax consultants quickly look up taxes for customers by product code.
 
-#Technologies used
+## Technologies used
 - Java
 - Gradle
 - IntelliJ Ultimate
@@ -10,7 +10,7 @@ This Android application is a sales tool meant to help AvaTax consultants quickl
 - Apache libraries
 - [AvaTax API](https://developer.avalara.com/avatax/)
 
-#Resources
+## Resources
 
 Avalara Style Guide [Avalara Style Guide](http://styleguide.avalara.com/)
 
@@ -23,7 +23,7 @@ Avalara Style Guide [Avalara Style Guide](http://styleguide.avalara.com/)
 [Apache guide](https://hc.apache.org/httpcomponents-client-ga/quickstart.html)
 
 
-#Credits
+## Credits
 Dev team: Ahmed Ossan, Tara Johnson, Tyler Pearson, Suzanne Richman
 
 Code Fellows Instructional team: Steve Geluso, Casey Cady
