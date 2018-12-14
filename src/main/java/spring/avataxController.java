@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @SessionAttributes({"username","password"})
 public class avataxController {
 
-    @RequestMapping(value="/auth", method=RequestMethod.GET)
+    @RequestMapping(value="/auth", method=RequestMethod.POST)
     @ResponseBody
     public Boolean auth(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password){
         HttpSession sesh = request.getSession();
