@@ -18,6 +18,7 @@ import java.util.Date;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
@@ -67,15 +68,21 @@ public class TransactionBuilder {
         try {
             String userPass = Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
             String requestUrl = "https://rest.avatax.com/api/v2/transactions/create";
+
             StringEntity requestEntity = new StringEntity(gson.toJson(CTModel), ContentType.APPLICATION_JSON);
 
-            CloseableHttpClient client = HttpClients.createDefault();
-            HttpPost httpPost = new HttpPost(requestUrl);
-            httpPost.addHeader("accept", "application/json");
-            httpPost.addHeader("authorization", "Basic " + userPass);
-            httpPost.setEntity(requestEntity);
+            /*
+            RESOURCES: https://hc.apache.org/httpcomponents-client-ga/quickstart.html
+            info for using the HttpClient
+            */
 
-            HttpResponse response = client.execute(httpPost);
+            CloseableHttpClient client = HttpClients.createDefault();
+            HttpGet httpGet = new HttpGet(requestUrl);
+            httpGet.addHeader("accept", "application/json");
+            httpGet.addHeader("authorization", "Basic " + userPass);
+//            httpGet.setEntity(requestEntity);
+
+            HttpResponse response = client.execute(httpGet);
 
             if (response.getStatusLine().getStatusCode() != 200 && (response.getStatusLine().getStatusCode() != 201)) {
                 throw new RuntimeException("Error : " + response.getStatusLine().getStatusCode());
