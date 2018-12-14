@@ -24,17 +24,14 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @SessionAttributes({"taxcode","zip","username","password"})
 public class TransactionBuilder {
-    @GetMapping("/transaction")
+    @RequestMapping(value="/transaction", method=RequestMethod.POST)
     @ResponseBody
     public String transactionBuilder(HttpServletRequest post, @RequestParam String taxcode,
                                      @RequestParam String zip, @RequestParam String username, @RequestParam String password) {
