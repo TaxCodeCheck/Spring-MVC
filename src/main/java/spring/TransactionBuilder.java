@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @SessionAttributes({"taxcode","zip","username","password"})
 public class TransactionBuilder {
-    @RequestMapping(value="/transaction", method=RequestMethod.POST)
+    @RequestMapping(value="/transaction", method=RequestMethod.GET)
     @ResponseBody
     public String transactionBuilder(HttpServletRequest post, @RequestParam String taxcode,
                                      @RequestParam String zip, @RequestParam String username, @RequestParam String password) {
